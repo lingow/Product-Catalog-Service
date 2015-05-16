@@ -8,7 +8,7 @@ More info on each project:
 * #### Spring Data JPA: 
 <a href="http://blog.springsource.org/2011/02/10/getting-started-with-spring-data-jpa/">SpringSource</a>
 
-* #### Jesey JAX-RS
+* #### Jersey JAX-RS
 Library for Restful Web Services
 <a href="http://jersey.java.net/">Jersey</a>
 
@@ -92,7 +92,7 @@ You can push the project into heroku by using
 
 And now you can load the website with the url:
 
-	http://[new_name].heroku/rest/test/getAll
+	http://[new_name].heroku/Product-Catalog-Service/rest/test/getAll
 
 and get the following results:
 
@@ -102,7 +102,7 @@ and get the following results:
 
 You can also load:
 
-	http://[new_name].herokuapp.com/
+	http://[new_name].herokuapp.com/Product-Catalog-Service
 
 and you will see a test Vaadin window (also configured in this project template)
 
@@ -116,9 +116,9 @@ And that´s all, now you can play with Vaadin , JPA database connections, JAX-RS
 
 You can test this project for real with the following data:
 
-[Vaadin example window test](http://drmillan-javaserver.herokuapp.com/Product-Catalog-Service)
+[Vaadin example window test](http://mscproductcatalog.herokuapp.com/Product-Catalog-Service)
 
-[Jersey Restful response test](http://drmillan-javaserver.herokuapp.com/Product-Catalog-Service/rest/products/getAll)
+[Jersey Restful response test](http://mscproductcatalog.herokuapp.com/Product-Catalog-Service/rest/products/getAll)
 
 Thanks all!
 Lingow.
