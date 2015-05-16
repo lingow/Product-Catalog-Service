@@ -3,7 +3,7 @@ package org.iteso.msc.asn2015.productcatalog.init;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.iteso.msc.asn2015.productcatalog.logic.TestLogic;
+import org.iteso.msc.asn2015.productcatalog.logic.ProductLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -17,7 +17,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 public class SystemInitializer implements ServletContextListener{
 
 	@Autowired
-	TestLogic testLogic;
+	ProductLogic productLogic;
 	
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {

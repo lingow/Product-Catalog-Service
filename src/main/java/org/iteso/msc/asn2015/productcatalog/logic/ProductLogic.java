@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class TestLogic {
+public class ProductLogic {
 	@Autowired
 	private TestDAO testDAO;
 	

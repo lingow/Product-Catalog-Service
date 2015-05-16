@@ -72,10 +72,14 @@ you should get this result:
 Ok, at this moment you have a brand new PostgreSQL database on heroku, (a free one, you are limited to 10000 rows).
 
 The project will use the heroku provided DATABASE_URL environment variable to expose the database.
-In order to test locally, this same variable should be used in the runtime configuration. To know 
-its value, run this command:
+To know its value, run this command:
 
-	heroku config | grep HEROKU_POSTGRESQL
+	heroku config | grep DATABASE_URL
+	
+In order to test locally, the jetty server should be started with a modified version of the DATABASE_URL
+environment variable which heroku uses
+
+	DATABASE_URL=${DATABASE_URL}?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
 
 ### Deploy server
 
@@ -112,9 +116,9 @@ And that´s all, now you can play with Vaadin , JPA database connections, JAX-RS
 
 You can test this project for real with the following data:
 
-[Vaadin example window test](http://drmillan-javaserver.herokuapp.com)
+[Vaadin example window test](http://drmillan-javaserver.herokuapp.com/Product-Catalog-Service)
 
-[Jersey Restful response test](http://drmillan-javaserver.herokuapp.com/rest/test/getAll)
+[Jersey Restful response test](http://drmillan-javaserver.herokuapp.com/Product-Catalog-Service/rest/products/getAll)
 
 Thanks all!
-Daniel Rodríguez.
+Lingow.

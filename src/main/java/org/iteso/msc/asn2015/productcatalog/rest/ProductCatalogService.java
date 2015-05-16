@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.iteso.msc.asn2015.productcatalog.logic.TestLogic;
+import org.iteso.msc.asn2015.productcatalog.logic.ProductLogic;
 import org.iteso.msc.asn2015.productcatalog.model.dao.TestDAO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.TestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +16,18 @@ import org.springframework.stereotype.Component;
 
 /**
  * Test 
- * @author Daniel Rodriguez Millan drm@chocodev.com
- * @see TestLogic
+ * @author Juan Lingow
+ * @see ProductLogic
  * @see TestDAO
  * @see TestDTO
  */
 @Component
-@Path("/test")
+@Path("/products")
 @Scope("request")
-public class TestService {
+public class ProductCatalogService {
 	
 	@Autowired
-	TestLogic testLogic;
+	ProductLogic productLogic;
 	
 	/**
 	 * Returns all TestDTO objects as JSON 
@@ -38,7 +38,7 @@ public class TestService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<TestDTO> getAll()
 	{
-		return testLogic.getAll();
+		return productLogic.getAll();
 	}
 	
 }
