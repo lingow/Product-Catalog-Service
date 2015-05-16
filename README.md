@@ -71,16 +71,11 @@ you should get this result:
 
 Ok, at this moment you have a brand new PostgreSQL database on heroku, (a free one, you are limited to 10000 rows).
 
-Now you need the database info from Heroku website, so log in, and check database properties.
+The project will use the heroku provided DATABASE_URL environment variable to expose the database.
+In order to test locally, this same variable should be used in the runtime configuration. To know 
+its value, run this command:
 
-### Configure JDBC properties
-
-In the project folder, under src/main/resources, you can edit *jdbc.properties* and set the values you got from Heroku
-
-	jdbc.driverClassName=org.postgresql.Driver
-	jdbc.url=jdbc:postgresql://SERVER_POSTGRESQL_ADDRESS:SERVER_POSTGRESQL_PORT/SERVER_POSTGRESQL_DATABASE?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
-	jdbc.username=USER_POSTGRESQL
-	jdbc.password=PASSWORD_POSTGRESQL
+	heroku config | grep HEROKU_POSTGRESQL
 
 ### Deploy server
 

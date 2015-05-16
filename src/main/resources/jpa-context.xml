@@ -25,9 +25,21 @@
 			
 	<jpa:repositories base-package="org.iteso.msc.asn2015.productcatalog.model.dao" />
 	
+	<!--  #### These two lines use a custom datasource factory
 	<bean id = "dbfactory" class = "org.iteso.msc.asn2015.productcatalog.HerokuDataSourceFactory" />
 	<bean id = "dbDataSource" factory-bean = "dbfactory" factory-method = "createDataSource" />
-		
+	-->
+	
+	<bean class="java.net.URI" id="dbUrl">
+	    <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
+	</bean>
+	
+	<bean id="dbDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	    <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
+	    <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
+	    <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
+	</bean>
+	
 	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
