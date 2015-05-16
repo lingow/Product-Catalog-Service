@@ -1,9 +1,8 @@
-package com.chocodev.herokuserver.model.dao;
+package org.iteso.msc.asn2015.productcatalog.model.dao;
 
+import org.iteso.msc.asn2015.productcatalog.model.dto.TestDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.chocodev.herokuserver.model.dto.TestDTO;
 
 /**
  * TestDAO (Repository) for TestDTO objects

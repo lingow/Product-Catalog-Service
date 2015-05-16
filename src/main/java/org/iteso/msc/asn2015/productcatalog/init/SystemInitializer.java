@@ -1,13 +1,12 @@
-package com.chocodev.herokuserver.init;
+package org.iteso.msc.asn2015.productcatalog.init;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.iteso.msc.asn2015.productcatalog.logic.TestLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-
-import com.chocodev.herokuserver.logic.TestLogic;
 
 
 /**

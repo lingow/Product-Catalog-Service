@@ -1,4 +1,4 @@
-package com.chocodev.herokuserver.app;
+package org.iteso.msc.asn2015.productcatalog.app;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.

@@ -1,4 +1,4 @@
-package com.chocodev.herokuserver.model.dto;
+package org.iteso.msc.asn2015.productcatalog.model.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

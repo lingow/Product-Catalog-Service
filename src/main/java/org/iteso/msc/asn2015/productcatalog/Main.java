@@ -1,4 +1,4 @@
-package com.chocodev.herokuserver;
+package org.iteso.msc.asn2015.productcatalog;
 
 import java.io.IOException;
 

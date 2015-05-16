@@ -1,4 +1,4 @@
-package com.chocodev.herokuserver.rest;
+package org.iteso.msc.asn2015.productcatalog.rest;
 
 import java.util.List;
 
@@ -7,13 +7,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.iteso.msc.asn2015.productcatalog.logic.TestLogic;
+import org.iteso.msc.asn2015.productcatalog.model.dao.TestDAO;
+import org.iteso.msc.asn2015.productcatalog.model.dto.TestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import com.chocodev.herokuserver.logic.TestLogic;
-import com.chocodev.herokuserver.model.dao.TestDAO;
-import com.chocodev.herokuserver.model.dto.TestDTO;
 
 /**
  * Test 

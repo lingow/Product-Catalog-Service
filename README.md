@@ -47,7 +47,7 @@ this command should return something like:
 
 which means heroku created a server with name safe-escarpment-6048, which is a really confusing name, so we change it by using:
 
-	heroku -apps:rename [type_a_new_name]
+	heroku apps:rename [type_a_new_name]
 
 this command should return something like this:
 
@@ -58,7 +58,7 @@ this command should return something like this:
 
 Lets add a new database to our heroku server, type in your command line:
 
-	heroku addons:add heroku-postgresql
+	heroku addons:create heroku-postgresql
 
 you should get this result:
 

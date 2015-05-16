@@ -1,13 +1,12 @@
-package com.chocodev.herokuserver.logic;
+package org.iteso.msc.asn2015.productcatalog.logic;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.iteso.msc.asn2015.productcatalog.model.dao.TestDAO;
+import org.iteso.msc.asn2015.productcatalog.model.dto.TestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.chocodev.herokuserver.model.dao.TestDAO;
-import com.chocodev.herokuserver.model.dto.TestDTO;
 
 /**
  * Logic Test Class

@@ -12,9 +12,8 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
 	
-	<context:property-placeholder location="classpath:jdbc.properties"/>
-			
-	<jpa:repositories base-package="com.chocodev.herokuserver.model.dao" />
+	<!--   
+	<context:property-placeholder location="classpath:jdbc.properties"/>  
 	
 	<bean id="wastemanDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	    <property name="driverClassName" value="${jdbc.driverClassName}"/>
@@ -22,6 +21,12 @@
 	    <property name="username" value="${jdbc.username}"/>
 	    <property name="password" value="${jdbc.password}"/>
 	</bean>
+	-->
+			
+	<jpa:repositories base-package="org.iteso.msc.asn2015.productcatalog.model.dao" />
+	
+	<bean id = "dbfactory" class = "org.iteso.msc.asn2015.productcatalog.HerokuDataSourceFactory" />
+	<bean id = "dbDataSource" factory-bean = "dbfactory" factory-method = "createDataSource" />
 		
 	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
@@ -29,7 +34,7 @@
 		<property name="loadTimeWeaver">
 			<bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
 		</property>
-		<property name="dataSource" ref="wastemanDS"/>
+		<property name="dataSource" ref="dbDataSource"/>
 		<property name="jpaVendorAdapter" ref="jpaAdapter"/>
 	</bean>
 

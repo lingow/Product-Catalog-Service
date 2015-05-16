@@ -1,13 +1,13 @@
-package com.chocodev.herokuserver.app.window;
+package org.iteso.msc.asn2015.productcatalog.app.window;
 
 
 import javax.annotation.Resource;
 
+import org.iteso.msc.asn2015.productcatalog.app.HerokuServerApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.chocodev.herokuserver.app.HerokuServerApplication;
 import com.vaadin.Application;
 import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.ui.Button;

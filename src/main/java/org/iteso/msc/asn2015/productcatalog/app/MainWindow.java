@@ -1,16 +1,16 @@
-package com.chocodev.herokuserver.app;
+package org.iteso.msc.asn2015.productcatalog.app;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 
+import org.iteso.msc.asn2015.productcatalog.app.window.LoginWindow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
-import com.chocodev.herokuserver.app.window.LoginWindow;
 import com.vaadin.Application;
 import com.vaadin.ui.Window;
 

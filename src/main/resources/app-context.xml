@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
 
     <context:spring-configured />
-	<context:component-scan base-package="com.chocodev.herokuserver" />
+	<context:component-scan base-package="org.iteso.msc.asn2015.productcatalog" />
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
 </beans>

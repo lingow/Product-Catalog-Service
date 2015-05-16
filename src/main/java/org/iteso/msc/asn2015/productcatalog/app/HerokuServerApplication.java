@@ -1,9 +1,8 @@
-package com.chocodev.herokuserver.app;
+package org.iteso.msc.asn2015.productcatalog.app;
 
+import org.iteso.msc.asn2015.productcatalog.logic.TestLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.chocodev.herokuserver.logic.TestLogic;
 
 
 /**
