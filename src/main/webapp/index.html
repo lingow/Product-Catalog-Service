@@ -1,19 +1,49 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Test</title>
-</head>
-<body>
-<h1>Upload a File</h1>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Product Catalog Service</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
 
-	<form action="rest/image" method="post" enctype="multipart/form-data">
-
-	   <p>
-		Select a file : <input type="file" name="file" size="50" />
-	   </p>
-
-	   <input type="submit" value="Upload It" />
-	</form>
-</body>
+<div class="container">
+	<nav class="navbar navbar-inverse" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Product Catalog Service</a>
+        </div>
+      
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav" id ="navButtonList">
+            <li id="navHome"><a href="#">Home</a></li>
+            <li id="navCategories"><a href="#">Categories</a></li>
+            <li id="navProducts"><a href="#">Products</a></li>
+            <li id="navImages"><a href="#">Images</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+      <div id="contents" class="container"></div>
+</div>
+         
+	 
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/navigation.js"></script>
+	</body>
 </html>
