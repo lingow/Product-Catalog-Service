@@ -1,7 +1,7 @@
-Heroku-Spring Data JPA-JerseyRest-Vaadin
+Heroku-Spring Data JPA-JerseyRest
 =======================
 
-Project Template for JPARepository + JerseyRest + Vaadin ready for Heroku
+Project Template for JPARepository + JerseyRest + ready for Heroku
 
 More info on each project:
 
@@ -12,6 +12,7 @@ More info on each project:
 Library for Restful Web Services
 <a href="http://jersey.java.net/">Jersey</a>
 
+This project is able to use Vaadin as Front End. To enable it, uncomment its servlet in web.xml
 * #### Vaadin
 The best Java user interface for web applications
 <a href="http://www.vaadin.com">Vaadin</a>
@@ -90,35 +91,35 @@ You can push the project into heroku by using
 
 ### Test Services
 
-And now you can load the website with the url:
+And now you can load the website:
 
-	http://[new_name].heroku/Product-Catalog-Service/rest/test/getAll
+To upload Images:
 
-and get the following results:
+	http://[new_name].herokuapp.com
+	
+View all Image objects
 
-	[{"id":1,"testName":"ElementName","testDescription":"ElementDescription"}]
+	http://[new_name].heroku/rest/images
+	
+View a single Image object:
 
-### Test Vaadin
+	http://[new_name].herokuapp.com/rest/image/${id}
+	
 
-You can also load:
-
-	http://[new_name].herokuapp.com/Product-Catalog-Service
-
-and you will see a test Vaadin window (also configured in this project template)
-
+To test locally, replace [new_name] with localhost:<port> depending on which port was
+jetty started.
 
 ## That´s All
 
-And that´s all, now you can play with Vaadin , JPA database connections, JAX-RS rest services
-
+And that´s all, now you can play with JPA database connections and JAX-RS rest services
 
 ## Test the real thing
 
 You can test this project for real with the following data:
 
-[Vaadin example window test](http://mscproductcatalog.herokuapp.com/Product-Catalog-Service)
-
-[Jersey Restful response test](http://mscproductcatalog.herokuapp.com/Product-Catalog-Service/rest/products/getAll)
+[Upload Images](http://mscproductcatalog.herokuapp.com)
+[Get all image objects](http://mscproductcatalog.herokuapp.com/rest/images)
+[Get single image object](http://mscproductcatalog.herokuapp.com/rest/image/1)
 
 Thanks all!
 Lingow.

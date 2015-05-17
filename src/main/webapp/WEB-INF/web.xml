@@ -47,6 +47,8 @@
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 		
+	<!-- 
+	
 	<servlet>
   		<servlet-name>heroku-test</servlet-name>
   		<servlet-class>
@@ -65,4 +67,6 @@
 		<servlet-name>heroku-test</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
+	
+	 -->
 </web-app>

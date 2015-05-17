@@ -1,6 +1,6 @@
 package org.iteso.msc.asn2015.productcatalog.app;
 
-import org.iteso.msc.asn2015.productcatalog.logic.ProductLogic;
+import org.iteso.msc.asn2015.productcatalog.logic.ImageLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ public class HerokuServerApplication extends ContextAwareApplication {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
-	ProductLogic productLogic;
+	ImageLogic imageLogic;
 	
 	
 	@Override
@@ -25,7 +25,7 @@ public class HerokuServerApplication extends ContextAwareApplication {
 		super.initApplication();
 	}
 
-	public ProductLogic getTestLogic() {
-		return productLogic;
+	public ImageLogic getTestLogic() {
+		return imageLogic;
 	}
 }
