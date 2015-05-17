@@ -1,7 +1,7 @@
 Heroku-Spring Data JPA-JerseyRest
 =======================
 
-Project Template for JPARepository + JerseyRest + ready for Heroku
+Product Catalog Service using JPARepository + JerseyRest + ready for Heroku
 
 More info on each project:
 
@@ -103,15 +103,19 @@ View all Image objects
 	
 View a single Image object:
 
+	http://[new_name].herokuapp.com/rest/imageobject/${id}
+
+View a single Image
+
 	http://[new_name].herokuapp.com/rest/image/${id}
-	
+
 
 To test locally, replace [new_name] with localhost:<port> depending on which port was
 jetty started.
 
-## That´s All
+## That's All
 
-And that´s all, now you can play with JPA database connections and JAX-RS rest services
+And that's all, now you can play with JPA database connections and JAX-RS rest services
 
 ## Test the real thing
 
@@ -119,7 +123,8 @@ You can test this project for real with the following data:
 
 [Upload Images](http://mscproductcatalog.herokuapp.com)
 [Get all image objects](http://mscproductcatalog.herokuapp.com/rest/images)
-[Get single image object](http://mscproductcatalog.herokuapp.com/rest/image/1)
+[Get single image object](http://mscproductcatalog.herokuapp.com/rest/imageobject/2)
+[Get single image](http://mscproductcatalog.herokuapp.com/rest/image/2)
 
 Thanks all!
 Lingow.

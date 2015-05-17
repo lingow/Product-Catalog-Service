@@ -1,7 +1,11 @@
 package org.iteso.msc.asn2015.productcatalog.rest;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,20 +67,30 @@ public class ProductCatalogService {
         @FormDataParam("file") InputStream uploadedInputStream,
         @FormDataParam("file") FormDataContentDisposition fileDetail) {
 		Integer id;
-		try {
-			id = imageLogic.create(IOUtils.toByteArray(uploadedInputStream),fileDetail.getFileName(),fileDetail.getType());
-			URI uri = UriBuilder.fromPath("/image/"+id).build(new ArrayList<Object>());
-			return Response.created(uri).build();
-		} catch (IOException e) {
-			return Response.serverError().entity(e).build();
+		id = imageLogic.create(uploadedInputStream,fileDetail);
+		if (id < 0){
+			return Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).build();
 		}
+		URI uri = UriBuilder.fromPath("/image/"+id).build(new ArrayList<Object>());
+		return Response.created(uri).build();
+	}
+
+
+	@GET
+	@Path("/imageobject/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ImageDTO getImage(@PathParam("id") String id){
+		return imageLogic.get(Integer.parseInt(id));
 	}
 	
 	@GET
 	@Path("/image/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public ImageDTO getImage(@PathParam("id") String id){
-		return imageLogic.get(Integer.parseInt(id));
+	public Response getImageData(@PathParam("id") String id){
+		ImageDTO img = imageLogic.get(Integer.parseInt(id));
+		if ( img == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+		return Response.ok(img.getImageFile(),img.getType()).build();
 	}
 
 }

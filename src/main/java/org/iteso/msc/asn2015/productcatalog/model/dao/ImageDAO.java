@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * ImageDAO (Repository) for ImageDTO objects
- * @author Daniel Rodriguez Millan drm@chocodev.com
+ * @author Juan Lingow
  *
  */
 @Repository("imageDAO")

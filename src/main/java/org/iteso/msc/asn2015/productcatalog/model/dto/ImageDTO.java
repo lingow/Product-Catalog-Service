@@ -31,8 +31,8 @@ public class ImageDTO implements Serializable{
 	@Column(name="name",nullable=false)
 	private String name;
 	
-	@Column(name="mime_type",nullable=false)
-	private String mimeType;
+	@Column(name="type",nullable=false)
+	private String type;
 	
 	@Column(name="description")
 	private String description;
@@ -45,10 +45,10 @@ public class ImageDTO implements Serializable{
 	public ImageDTO(){
 		super();
 	}
-	public ImageDTO(String name, String mimeType, byte[] imageFile) {
+	public ImageDTO(String name, String type, byte[] imageFile) {
 		this();
 		this.name = name;
-		this.mimeType = mimeType;
+		this.type = type;
 		this.imageFile = imageFile;
 	}
 
@@ -68,12 +68,12 @@ public class ImageDTO implements Serializable{
 		this.name = name;
 	}
 
-	public String getMimeType() {
-		return mimeType;
+	public String getType() {
+		return type;
 	}
 
-	public void setMimeType(String mimeType) {
-		this.mimeType = mimeType;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getDescription() {
