@@ -109,6 +109,9 @@ View a single Image
 
 	http://[new_name].herokuapp.com/rest/image/${id}
 
+Delete a single Image [should be made as a DELETE request]
+
+	http://[new_name].herokuapp.com/rest/image/${id}
 
 To test locally, replace [new_name] with localhost:<port> depending on which port was
 jetty started.

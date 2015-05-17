@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -66,31 +67,28 @@ public class ProductCatalogService {
 	public Response addImage(
         @FormDataParam("file") InputStream uploadedInputStream,
         @FormDataParam("file") FormDataContentDisposition fileDetail) {
-		Integer id;
-		id = imageLogic.create(uploadedInputStream,fileDetail);
-		if (id < 0){
-			return Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).build();
-		}
-		URI uri = UriBuilder.fromPath("/image/"+id).build(new ArrayList<Object>());
-		return Response.created(uri).build();
+		return imageLogic.create(uploadedInputStream,fileDetail);
 	}
 
 
 	@GET
 	@Path("/imageobject/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ImageDTO getImage(@PathParam("id") String id){
-		return imageLogic.get(Integer.parseInt(id));
+	public ImageDTO getImageObject(@PathParam("id") String id){
+		return imageLogic.getImageObject(Integer.parseInt(id));
 	}
 	
 	@GET
 	@Path("/image/{id}")
-	public Response getImageData(@PathParam("id") String id){
-		ImageDTO img = imageLogic.get(Integer.parseInt(id));
-		if ( img == null) {
-			return Response.status(Response.Status.NOT_FOUND).build();
-		}
-		return Response.ok(img.getImageFile(),img.getType()).build();
+	public Response getImage(@PathParam("id") String id){
+		return imageLogic.getImage(Integer.parseInt(id));
 	}
 
+	@DELETE
+	@Path("/image/{id}")
+	public Response deleteImage(@PathParam("id") String id){
+		return imageLogic.deleteImage(Integer.parseInt(id));
+	}
+	
+	
 }
