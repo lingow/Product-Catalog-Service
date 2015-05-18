@@ -1,5 +1,6 @@
 package org.iteso.msc.asn2015.productcatalog.rest;
 
+import java.awt.BufferCapabilities.FlipContents;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -90,5 +91,14 @@ public class ProductCatalogService {
 		return imageLogic.deleteImage(Integer.parseInt(id));
 	}
 	
+	@POST
+	@Path("/image/{id}")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Response updateImage(
+			@PathParam("id") String id,
+			@FormDataParam("file") InputStream uploadedInputStream,
+	        @FormDataParam("file") FormDataContentDisposition fileDetail){
+		return imageLogic.updateImage(Integer.parseInt(id),uploadedInputStream,fileDetail);
+	}
 	
 }

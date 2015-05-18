@@ -8,7 +8,6 @@ $(document).ready(function(){
 				.append($("<tr>")
 					.append($("<td>").text(img.id))
 					.append($("<td>").text(img.name))
-					.append($("<td>").text(img.description))
 					.append($("<td>").text(img.type))
 					.append($("<td>")
 						.append($("<img>")

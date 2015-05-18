@@ -34,9 +34,6 @@ public class ImageDTO implements Serializable{
 	@Column(name="type",nullable=false)
 	private String type;
 	
-	@Column(name="description")
-	private String description;
-	
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	@Column(name="image_file",nullable=false)
@@ -74,14 +71,6 @@ public class ImageDTO implements Serializable{
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public byte[] getImageFile() {

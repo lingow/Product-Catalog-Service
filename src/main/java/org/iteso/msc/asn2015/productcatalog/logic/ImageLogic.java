@@ -44,25 +44,8 @@ public class ImageLogic {
 
 	public Response create(InputStream uploadedInputStream,
 			FormDataContentDisposition fileDetail) {
-		String mimeType;
-		try {
-			mimeType = URLConnection.guessContentTypeFromStream(uploadedInputStream);
-			if (mimeType == null){
-				mimeType = URLConnection.guessContentTypeFromName(fileDetail.getFileName());
-			}
-			if (mimeType == null){
-				return  Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).build();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			return  Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).build();
-		}
-		ImageDTO img;
-		try {
-			img = new ImageDTO(fileDetail.getName(),mimeType,IOUtils.toByteArray(uploadedInputStream));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ImageDTO img = getImageFromInput(uploadedInputStream,fileDetail);
+		if (img == null){
 			return Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).build();
 		}
 		imageDAO.save(img);
@@ -88,5 +71,47 @@ public class ImageLogic {
 
 	public ImageDTO getImageObject(int id) {
 		return imageDAO.findOne(id);
+	}
+
+	public Response updateImage(int id, InputStream uploadedInputStream,
+			FormDataContentDisposition fileDetail) {
+		ImageDTO img = imageDAO.findOne(id);
+		if (img == null){
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+		ImageDTO modimg = getImageFromInput(uploadedInputStream,fileDetail);
+		if (modimg == null){
+			return Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).build();
+		}
+		img.setImageFile(modimg.getImageFile());
+		img.setName(modimg.getName());
+		img.setType(modimg.getType());
+		imageDAO.save(img);
+		return Response.ok("Image modified").build();
+	}
+
+	private ImageDTO getImageFromInput(InputStream uploadedInputStream,
+			FormDataContentDisposition fileDetail) {
+		String mimeType;
+		try {
+			mimeType = URLConnection.guessContentTypeFromStream(uploadedInputStream);
+			if (mimeType == null){
+				mimeType = URLConnection.guessContentTypeFromName(fileDetail.getFileName());
+			}
+			if (mimeType == null){
+				return null;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return  null;
+		}
+		ImageDTO img;
+		try {
+			img = new ImageDTO(fileDetail.getFileName(),mimeType,IOUtils.toByteArray(uploadedInputStream));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return img;
 	}
 }
