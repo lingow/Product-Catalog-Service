@@ -17,7 +17,7 @@ $(document).ready(function(){
 						)
 						.append($("<div>")
 							.append($("<form>")
-								.attr("action","rest/image")
+								.attr("action","rest/image/"+img.id)
 								.attr("method","post")
 								.attr("enctype","multipart/form-data")
 								.append($("<p>")
