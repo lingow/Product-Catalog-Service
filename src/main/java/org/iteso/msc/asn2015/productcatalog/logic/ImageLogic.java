@@ -56,7 +56,7 @@ public class ImageLogic {
 	public Response deleteImage(int id) {
 		if (imageDAO.exists(id)){
 			imageDAO.delete(id);
-			return Response.ok().build();
+			return Response.ok("Image Deleted").build();
 		}
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}

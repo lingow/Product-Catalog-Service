@@ -14,6 +14,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -25,8 +26,10 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriBuilder;
 
 import org.apache.commons.io.IOUtils;
+import org.iteso.msc.asn2015.productcatalog.logic.CategoryLogic;
 import org.iteso.msc.asn2015.productcatalog.logic.ImageLogic;
 import org.iteso.msc.asn2015.productcatalog.model.dao.ImageDAO;
+import org.iteso.msc.asn2015.productcatalog.model.dto.CategoryDTO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.ImageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -49,6 +52,9 @@ public class ProductCatalogService {
 	
 	@Autowired
 	ImageLogic imageLogic;
+	
+	@Autowired
+	CategoryLogic categoryLogic;
 	
 	/**
 	 * Returns all ImageDTO objects as JSON 
@@ -99,6 +105,42 @@ public class ProductCatalogService {
 			@FormDataParam("file") InputStream uploadedInputStream,
 	        @FormDataParam("file") FormDataContentDisposition fileDetail){
 		return imageLogic.updateImage(Integer.parseInt(id),uploadedInputStream,fileDetail);
+	}
+	
+	@POST
+	@Path("/category")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public Response addCategory(
+        @FormParam("name") String name,
+        @FormParam("description") String description,
+        @FormParam("imageId") String imageId) {
+		return categoryLogic.addCategory(name,description,Integer.parseInt(imageId));
+	}
+	
+	@GET
+	@Path("/category/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public CategoryDTO getCategory(
+        @PathParam("id") String id) {
+		return categoryLogic.getCategory(Integer.parseInt(id));
+	}
+	
+	@POST
+	@Path("/category/{id}")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public Response addCategory(
+		@PathParam("id") String id,
+        @FormParam("name") String name,
+        @FormParam("description") String description,
+        @FormParam("imageId") String imageId) {
+		return categoryLogic.updateCategory(Integer.parseInt(id),name,description,Integer.parseInt(imageId));
+	}
+	
+	@DELETE
+	@Path("/category/{id}")
+	public Response deleteCategory(
+        @PathParam("id") String id) {
+		return categoryLogic.deleteCategory(Integer.parseInt(id));
 	}
 	
 }
