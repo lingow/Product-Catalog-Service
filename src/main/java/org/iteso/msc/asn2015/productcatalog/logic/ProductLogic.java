@@ -8,6 +8,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -20,6 +21,7 @@ import org.iteso.msc.asn2015.productcatalog.model.dto.CategoryDTO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.ImageDTO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.sun.jersey.core.header.FormDataContentDisposition;
@@ -123,5 +125,22 @@ public class ProductLogic {
 	public List<ProductDTO> getProducts() {
 		return productDAO.findAll();
 	}
+	
+	public List<ProductDTO> getProductsByCategory(int id) {
+		List <ProductDTO> list = productDAO.findAll();
+		List <ProductDTO> categoryList = new ArrayList<ProductDTO>();
+		ListIterator<ProductDTO> it = list.listIterator();
+		while(it.hasNext()) {
+			ProductDTO p = it.next();
+			CategoryDTO c = p.getCategory();
+			if(c.getId() == id) {
+				categoryList.add(p);
+			}
+		}
+		
+		return categoryList;
+	}
+	
+	
 	
 }

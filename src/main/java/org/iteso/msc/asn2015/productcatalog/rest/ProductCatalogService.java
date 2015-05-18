@@ -217,4 +217,12 @@ public class ProductCatalogService {
 	public List<ProductDTO> getProducts() {
 		return productLogic.getProducts();
 	}
+	
+	@GET
+	@Path("/productsByCategoryId/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProductDTO> getProductsByCategory(
+			@PathParam("id") String id) {
+		return productLogic.getProductsByCategory(Integer.parseInt(id));
+	}
 }
