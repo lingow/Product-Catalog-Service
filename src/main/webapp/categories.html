@@ -1,5 +1,21 @@
 <h1>Categories</h1>
+
+
+<table class="table table-bordered table-striped table-hover" id="categoriesTable">
+   <thead>
+     <tr>
+       <th>Name</th>
+       <th>Description</th>
+       <th>Image ID</th>
+     </tr>
+   </thead>
+   <tbody>
+     
+   </tbody>
+ </table>
+
 <h2>Create</h2>
+
 <form action="/rest/category" method="post">
 	<label>name:</label><input name="name" type="text"/>
 	<label>description:</label><input name="description" type="text"/>
@@ -13,3 +29,5 @@
 	<label>imageid:</label><input name="imageId" type="text"/>
 	<input type="submit" value="Submit" />
 </form>
+
+<script src="js/categories.js"></script>

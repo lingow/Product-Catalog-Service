@@ -68,7 +68,7 @@ $(document).ready(function(){
 	
 	function deleteImage(imgId) {
 		$.ajax({
-			url: "rest/image"+imgId,
+			url: "rest/image/"+imgId,
 			type: 'DELETE',
 			success: function(response) {
 			}
