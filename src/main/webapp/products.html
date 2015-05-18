@@ -1,1 +1,21 @@
 <h1>Products</h1>
+<h2>Create</h2>
+<form action="/rest/product" method="post">
+	<label>name:</label><input name="name" type="text"/>
+	<label>description:</label><input name="description" type="text"/>
+	<label>imageid:</label><input name="imageId" type="text"/>
+	<label>categoryid:</label><input name="categoryId" type="text"/>
+	<label>currency:</label><input name="currency" type="text"/>
+	<label>price:</label><input name="price" type="text"/>
+	<input type="submit" value="Submit" />
+</form>
+<h2>Update</h2>
+<form action="/rest/product/1" method="post">
+	<label>name:</label><input name="name" type="text"/>
+	<label>description:</label><input name="description" type="text"/>
+	<label>imageid:</label><input name="imageId" type="text"/>
+	<label>categoryid:</label><input name="categoryId" type="text"/>
+	<label>currency:</label><input name="currency" type="text"/>
+	<label>price:</label><input name="price" type="text"/>
+	<input type="submit" value="Submit" />
+</form>

@@ -28,9 +28,11 @@ import javax.ws.rs.core.UriBuilder;
 import org.apache.commons.io.IOUtils;
 import org.iteso.msc.asn2015.productcatalog.logic.CategoryLogic;
 import org.iteso.msc.asn2015.productcatalog.logic.ImageLogic;
+import org.iteso.msc.asn2015.productcatalog.logic.ProductLogic;
 import org.iteso.msc.asn2015.productcatalog.model.dao.ImageDAO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.CategoryDTO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.ImageDTO;
+import org.iteso.msc.asn2015.productcatalog.model.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -55,6 +57,9 @@ public class ProductCatalogService {
 	
 	@Autowired
 	CategoryLogic categoryLogic;
+	
+	@Autowired
+	ProductLogic productLogic;
 	
 	/**
 	 * Returns all ImageDTO objects as JSON 
@@ -149,5 +154,67 @@ public class ProductCatalogService {
 	public List<CategoryDTO> getCategories(
         @PathParam("id") String id) {
 		return categoryLogic.getCategories();
+	}
+	
+	@POST
+	@Path("/product")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public Response addProduct(
+        @FormParam("name") String name,
+        @FormParam("description") String description,
+        @FormParam("imageId") String imageId,
+        @FormParam("categoryId") String categoryId,
+        @FormParam("currency") String currency,
+        @FormParam("price") String price) {
+		return productLogic.addProduct(
+				name,
+				description,
+				Integer.parseInt(imageId),
+				Integer.parseInt(categoryId),
+				currency,
+				Float.parseFloat(price));
+	}
+	
+	@GET
+	@Path("/product/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ProductDTO getProduct(
+        @PathParam("id") String id) {
+		return productLogic.getProduct(Integer.parseInt(id));
+	}
+	
+	@POST
+	@Path("/product/{id}")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public Response addProduct(
+		@PathParam("id") String id,
+        @FormParam("name") String name,
+        @FormParam("description") String description,
+        @FormParam("imageId") String imageId,
+        @FormParam("categoryId") String categoryId,
+        @FormParam("currency") String currency,
+        @FormParam("price") String price) {
+		return productLogic.updateProduct(
+				Integer.parseInt(id),
+				name,
+				description,
+				Integer.parseInt(imageId),
+				Integer.parseInt(categoryId),
+				currency,
+				Float.parseFloat(price));
+	}
+	
+	@DELETE
+	@Path("/product/{id}")
+	public Response deleteProduct(
+        @PathParam("id") String id) {
+		return productLogic.deleteProduct(Integer.parseInt(id));
+	}
+	
+	@GET
+	@Path("/products")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProductDTO> getProducts() {
+		return productLogic.getProducts();
 	}
 }
