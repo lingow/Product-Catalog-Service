@@ -17,7 +17,7 @@ $(document).ready(function(){
 						)
 						.append($("<div>")
 							.append($("<form>")
-								.attr("action","rest/image/"+img.id)
+								.attr("action","rest/image")
 								.attr("method","post")
 								.attr("enctype","multipart/form-data")
 								.append($("<p>")
@@ -47,6 +47,16 @@ $(document).ready(function(){
 								.click(function() {
 									editImage(img.id);
 								})
+					.append($("<td>")
+							.append($("<a>")
+								.attr("href","#")
+								.attr("class","btn btn-info")
+								.append($("<i>")
+									.attr("class","glyphicon glyphicon-map-marker"))
+								.text("Delete")))
+								.click(function() {
+									deleteImage(img.id);
+								})
 				);
 		});
 	});
@@ -54,6 +64,15 @@ $(document).ready(function(){
 	function editImage(imgId) {
 		$("#img_"+imgId).hide();
 		$("#form_"+imgId).show();
+	}
+	
+	function deleteImage(imgId) {
+		$.ajax({
+			url: "rest/image"+imgId,
+			type: 'DELETE',
+			success: function(response) {
+			}
+		});
 	}
 	
 });
