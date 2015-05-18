@@ -20,6 +20,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -219,10 +220,20 @@ public class ProductCatalogService {
 	}
 	
 	@GET
-	@Path("/productsByCategoryId/{id}")
+	@Path("/productsByCategoryId")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ProductDTO> getProductsByCategory(
-			@PathParam("id") String id) {
+			@QueryParam("categoryId") String id) {
 		return productLogic.getProductsByCategory(Integer.parseInt(id));
 	}
+	
+	@GET
+	@Path("/productsByCurrency/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProductDTO> getProductsByCurrency(
+			@QueryParam("categoryId") String id) {
+		return productLogic.getProductsByCurrency(Integer.parseInt(id));
+	}
+	
+	
 }

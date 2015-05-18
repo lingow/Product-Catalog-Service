@@ -141,6 +141,19 @@ public class ProductLogic {
 		return categoryList;
 	}
 	
-	
+	public List<ProductDTO> getProductsByCurrency(int id) {
+		List <ProductDTO> list = productDAO.findAll();
+		
+		ListIterator<ProductDTO> it = list.listIterator();
+		while(it.hasNext()) {
+			ProductDTO p = it.next();
+			CategoryDTO c = p.getCategory();
+			if(c.getId() == id) {
+				
+			}
+		}
+		
+		return list;
+	}
 	
 }
