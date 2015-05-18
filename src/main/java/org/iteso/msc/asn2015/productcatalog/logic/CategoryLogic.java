@@ -78,5 +78,14 @@ public class CategoryLogic {
 		}
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}
+
+	public List<CategoryDTO> getCategories() {
+		List<CategoryDTO> result=categoryDAO.findAll();
+		// if no results, return an empty list
+		if(result==null ){
+			result = new ArrayList<CategoryDTO>();
+		}
+		return result;
+	}
 	
 }

@@ -143,4 +143,11 @@ public class ProductCatalogService {
 		return categoryLogic.deleteCategory(Integer.parseInt(id));
 	}
 	
+	@GET
+	@Path("/categories")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<CategoryDTO> getCategories(
+        @PathParam("id") String id) {
+		return categoryLogic.getCategories();
+	}
 }
