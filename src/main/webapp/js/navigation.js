@@ -22,4 +22,5 @@ $(document).ready(function(){
 		setActiveNavButton(this);
 		$("#contents").load("/images.html")
 	})
+	$('#navHome').click();
 })
