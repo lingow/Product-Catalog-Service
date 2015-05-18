@@ -38,25 +38,23 @@ $(document).ready(function(){
 						)
 					)
 					.append($("<td>")
-							.append($("<a>")
-								.attr("href","#")
-								.attr("class","btn btn-info")
-								.append($("<i>")
-									.attr("class","glyphicon glyphicon-map-marker"))
-								.text("Edit")))
-								.click(function() {
-									editImage(img.id);
-								})
-					.append($("<td>")
-							.append($("<a>")
-								.attr("href","#")
-								.attr("class","btn btn-info")
-								.append($("<i>")
-									.attr("class","glyphicon glyphicon-map-marker"))
-								.text("Delete")))
-								.click(function() {
-									deleteImage(img.id);
-								})
+						.append($("<a>")
+							.attr("href","#")
+							.attr("class","btn btn-warning")
+							.text("Edit")
+							.click(function() {
+								editImage(img.id);
+							})
+						)
+						.append($("<a>")
+							.attr("href","#")
+							.attr("class","btn btn-danger")
+							.text("Delete")
+							.click(function() {
+								deleteImage(img.id);
+							})
+						)
+					)
 				);
 		});
 	});

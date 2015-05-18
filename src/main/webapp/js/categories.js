@@ -8,9 +8,15 @@ $(document).ready(function(){
 				.append($("<tr>")
 					.append($("<td>").text(cat.id))
 					.append($("<td>").text(cat.name))
-					.append($("<td>").text(cat.description)
+					.append($("<td>").text(cat.description))
+					.append($("<td>")
+						.append((cat.image == null)?"null":$("<img>")
+							.attr("id","img_"+cat.image.id)
+							.attr("src","data:"+cat.image.type+";base64,"+cat.image.imageFile)
+							.attr("style","height:auto; width:auto; max-width:100px; max-height:100px;")
+						)
+					)
 				)
-			)
 		});
 	});
 });
