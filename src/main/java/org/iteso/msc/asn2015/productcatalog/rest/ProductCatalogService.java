@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -215,24 +216,17 @@ public class ProductCatalogService {
 	@GET
 	@Path("/products")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ProductDTO> getProducts() {
-		return productLogic.getProducts();
+	public List<ProductDTO> getProducts(
+			@QueryParam("categoryId") String id,
+			@QueryParam("currency") String currency) {		
+		return productLogic.getProducts(id, currency);
 	}
 	
 	@GET
-	@Path("/productsByCategoryId")
+	@Path("/currencies")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ProductDTO> getProductsByCategory(
-			@QueryParam("categoryId") String id) {
-		return productLogic.getProductsByCategory(Integer.parseInt(id));
-	}
-	
-	@GET
-	@Path("/productsByCurrency/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<ProductDTO> getProductsByCurrency(
-			@QueryParam("categoryId") String id) {
-		return productLogic.getProductsByCurrency(Integer.parseInt(id));
+	public List<Currency> getCurrencies() {			
+		return productLogic.getCurrencies();
 	}
 	
 	

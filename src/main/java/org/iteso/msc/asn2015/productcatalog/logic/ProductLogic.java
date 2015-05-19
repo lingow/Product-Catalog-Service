@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URLConnection;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
@@ -13,6 +14,10 @@ import java.util.ListIterator;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
+import net.webservicex.CurrencyConvertor;
+import net.webservicex.CurrencyConvertorSoap;
+
+import org.apache.axis.AxisFault;
 import org.apache.commons.io.IOUtils;
 import org.iteso.msc.asn2015.productcatalog.model.dao.CategoryDAO;
 import org.iteso.msc.asn2015.productcatalog.model.dao.ImageDAO;
@@ -123,8 +128,20 @@ public class ProductLogic {
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}
 
-	public List<ProductDTO> getProducts() {
-		return productDAO.findAll();
+	public List<ProductDTO> getProducts(String id, String currency) {
+		List<ProductDTO> list;
+		if(id == null){
+			list = productDAO.findAll();			
+		} else {
+			list = getProductsByCategory(Integer.parseInt(id));		
+		}
+		
+		if(currency != null) {
+			convertProductCurrency(list, currency);
+		}
+		
+		return list;
+		
 	}
 	
 	public List<ProductDTO> getProductsByCategory(int id) {
@@ -142,19 +159,30 @@ public class ProductLogic {
 		return categoryList;
 	}
 	
-	public List<ProductDTO> getProductsByCurrency(int id) {
-		List <ProductDTO> list = productDAO.findAll();
-		
+	public void convertProductCurrency(List<ProductDTO> list, String toCurrency) {
 		ListIterator<ProductDTO> it = list.listIterator();
-		while(it.hasNext()) {
-			ProductDTO p = it.next();
-			CategoryDTO c = p.getCategory();
-			if(c.getId() == id) {
+		try {
+			
+			CurrencyConvertor co = new CurrencyConvertor();
+			CurrencyConvertorSoap ccs = co.getCurrencyConvertorSoap();
+			Double currency;
+			while(it.hasNext()) {
+				ProductDTO p = it.next();
 				
+				currency = ccs.conversionRate(net.webservicex.Currency.fromValue(p.getCurrency()), net.webservicex.Currency.fromValue(toCurrency));
+				p.setPrice((float) (p.getPrice() * currency));
+				p.setCurrency(toCurrency);
 			}
-		}
 		
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<Currency> getCurrencies() {
+		List<Currency> list = new ArrayList<Currency>(Currency.getAvailableCurrencies());
 		return list;
+		
 	}
 	
 }
