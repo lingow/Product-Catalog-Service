@@ -6,23 +6,30 @@ $(document).ready(function(){
 	$.getScript("js/tablefunctions.js",function(){
 		function refreshTable(){
 			$("#imageTable tbody").empty();
-			$.get("/rest/images",function(data){
-				data.forEach(function(img,i,images){
-					$("#imageTable > tbody")
-						.append($("<tr>")
-							.append($("<td>").text(img.id))
-							.append($("<td>").text(img.name))
-							.append($("<td>").text(img.type))
-							.append(imageCell(img,"imgUpload",img.id))
-							.append(actionCell("image",img.id,refreshTable))
+			$.ajax({
+				url:"/rest/images",
+				success: function(data){
+					data.forEach(function(img,i,images){
+						$("#imageTable > tbody")
+							.append($("<tr>")
+								.append($("<td>").text(img.id))
+								.append($("<td>").text(img.name))
+								.append($("<td>").text(img.type))
+								.append(imageCell(img,"imgUpload",img.id))
+								.append(actionCell("image",img.id,refreshTable))
+							);
+					});
+					$(".edit_imgUpload").each(function(){
+						var cl = $(this).attr("class");
+						var id = $(this).attr("id");
+						$(this).replaceWith($("<input>")
+							.attr("type","file")
+							.attr("class",cl + " form-control input-file" )
+							.attr("id",id)
 						);
-				});
-				$(".edit_imgUpload").each(function(){
-					$(this)
-						.attr("type","file")
-						.attr("class",$(this).attr("class") + " form-control input-file" );
-				})
-					
+					})
+				},
+				cache:false
 			});
 		};
 		refreshTable();

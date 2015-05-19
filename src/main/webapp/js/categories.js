@@ -18,6 +18,22 @@ $(document).ready(function(){
 									.append(actionCell("category",cat.id,refreshTable))
 								)
 						});
+						$(".edit_image").each(function(){
+							$(this).empty();
+						});
+						$.get("/rest/images",function(data){
+							data.forEach(function(img){
+								$(".edit_image").each(function(){
+									var x = $(this).attr("value");
+									$(this)
+										.append($("<option>")
+											.attr("value",img.id)
+											.text(img.id)
+										)
+									$(this).val(x);
+								})
+							})
+						});
 					},
 				  cache: false
 				});
