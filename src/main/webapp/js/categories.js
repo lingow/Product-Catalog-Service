@@ -2,21 +2,26 @@
  * 
  */
 $(document).ready(function(){
-	$.get("/rest/categories",function(data){
-		data.forEach(function(cat,c,categories){
-			$("#categoriesTable > tbody")
-				.append($("<tr>")
-					.append($("<td>").text(cat.id))
-					.append($("<td>").text(cat.name))
-					.append($("<td>").text(cat.description))
-					.append($("<td>")
-						.append((cat.image == null)?"null":$("<img>")
-							.attr("id","img_"+cat.image.id)
-							.attr("src",cat.image.imageUrl)
-							.attr("style","height:auto; width:auto; max-width:100px; max-height:100px;")
-						)
-					)
-				)
-		});
+	$.getScript("js/tablefunctions.js",function(){
+		function refreshTable(){
+			$("#categoriesTable tbody").empty();
+			$.ajax({
+				  url: "/rest/categories",
+				  success: function(data){
+						data.forEach(function(cat,c,categories){
+							$("#categoriesTable > tbody")
+								.append($("<tr>")
+									.append($("<td>").text(cat.id))
+									.append(textCell(cat.name,"name",cat.id))
+									.append(textCell(cat.description,"description",cat.id))
+									.append(imageCell(cat.image,"image",cat.id))
+									.append(actionCell("category",cat.id,refreshTable))
+								)
+						});
+					},
+				  cache: false
+				});
+		}
+		refreshTable();
 	});
 });

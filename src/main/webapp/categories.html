@@ -1,30 +1,23 @@
 <h1>Categories</h1>
 
-
 <table class="table table-bordered table-striped table-hover" id="categoriesTable">
-   <thead>
-     <tr>
-       <th>#</th>
-       <th>Name</th>
-       <th>Description</th>
-       <th>Image</th>
-     </tr>
-   </thead>
-   <tbody>
-     
-   </tbody>
- </table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
 
 <h2>Create</h2>
 
 <form action="/rest/category" method="post">
-	<label>name:</label><input name="name" type="text"/>
-	<label>description:</label><input name="description" type="text"/>
-	<label>imageid:</label><input name="imageId" type="text"/>
-	<input type="submit" value="Submit" />
-</form>
-<h2>Update</h2>
-<form action="/rest/category/1" method="post">
 	<label>name:</label><input name="name" type="text"/>
 	<label>description:</label><input name="description" type="text"/>
 	<label>imageid:</label><input name="imageId" type="text"/>
