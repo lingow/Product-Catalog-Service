@@ -4,7 +4,7 @@
 $(document).ready(function(){
 	$.get("/rest/categories",function(data){
 		data.forEach(function(cat){
-			$('#category').append($('<option>').text(cat.description));//.attr(cat.id));
+			$('#category').append($('<option>').attr("value",cat.id).text(cat.description));//);
 		});
 	});
 	
@@ -14,13 +14,13 @@ $(document).ready(function(){
 		});
 	});
 	
-	
-	
 	$.getScript("js/tablefunctions.js",function(){
 		function refreshTable(){
 			$("#productsTable tbody").empty();
+			categoryVal = $('#category').val();
+			currencyVal = $('#currency').val();
 			$.ajax({
-				  url: "/rest/products",
+				  url: "/rest/products?categoryId=" +categoryVal+"&currency="+currencyVal ,
 				  success: function(data){
 						data.forEach(function(prod,p,products){
 							$("#productsTable > tbody")
@@ -40,6 +40,8 @@ $(document).ready(function(){
 				});
 		}
 		refreshTable();
+		$('#category').change(refreshTable);
+		$('#currency').change(refreshTable);
 	});
 });
 

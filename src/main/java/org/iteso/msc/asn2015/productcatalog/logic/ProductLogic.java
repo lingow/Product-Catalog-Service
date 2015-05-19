@@ -7,7 +7,7 @@ import java.net.URI;
 import java.net.URLConnection;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Currency;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -58,12 +58,11 @@ public class ProductLogic {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Product should have a currency").build();
 		}
-		try{
-			Currency.getInstance(currency);
-		}catch(IllegalArgumentException e){
+		if ( ! getCurrencies().contains(currency)){
 			return Response.status(Response.Status.BAD_REQUEST)
-					.entity(e).build();
+					.entity("Currency is not supported").build();
 		}
+		
 		CategoryDTO cat = categoryDAO.findOne(categoryId);
 		if (cat == null){
 			return Response.status(Response.Status.NOT_FOUND)
@@ -98,12 +97,11 @@ public class ProductLogic {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Product should have a currency").build();
 		}
-		try{
-			Currency.getInstance(currency);
-		}catch(IllegalArgumentException e){
+		if ( ! getCurrencies().contains(currency)){
 			return Response.status(Response.Status.BAD_REQUEST)
-					.entity(e).build();
+					.entity("Currency is not supported").build();
 		}
+		
 		CategoryDTO cat = categoryDAO.findOne(categoryId);
 		if (cat == null){
 			return Response.status(Response.Status.NOT_FOUND)
@@ -130,13 +128,13 @@ public class ProductLogic {
 
 	public List<ProductDTO> getProducts(String id, String currency) {
 		List<ProductDTO> list;
-		if(id == null){
+		if(id == null || id.isEmpty()){
 			list = productDAO.findAll();			
 		} else {
 			list = getProductsByCategory(Integer.parseInt(id));		
 		}
 		
-		if(currency != null) {
+		if(currency != null && !currency.isEmpty()) {
 			convertProductCurrency(list, currency);
 		}
 		
@@ -168,7 +166,6 @@ public class ProductLogic {
 			Double currency;
 			while(it.hasNext()) {
 				ProductDTO p = it.next();
-				
 				currency = ccs.conversionRate(net.webservicex.Currency.fromValue(p.getCurrency()), net.webservicex.Currency.fromValue(toCurrency));
 				p.setPrice((float) (p.getPrice() * currency));
 				p.setCurrency(toCurrency);
@@ -179,8 +176,12 @@ public class ProductLogic {
 		}
 	}
 	
-	public List<Currency> getCurrencies() {
-		List<Currency> list = new ArrayList<Currency>(Currency.getAvailableCurrencies());
+	public List<String> getCurrencies() {
+		net.webservicex.Currency[] currencies = net.webservicex.Currency.values();
+		List<String> list = new ArrayList<String>();
+		for (net.webservicex.Currency cur : currencies){
+			list.add(cur.name());
+		}
 		return list;
 		
 	}

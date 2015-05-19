@@ -225,7 +225,7 @@ public class ProductCatalogService {
 	@GET
 	@Path("/currencies")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Currency> getCurrencies() {			
+	public List<String> getCurrencies() {			
 		return productLogic.getCurrencies();
 	}
 	
