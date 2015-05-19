@@ -16,9 +16,10 @@ import javax.ws.rs.core.UriBuilder;
 import org.apache.commons.io.IOUtils;
 import org.iteso.msc.asn2015.productcatalog.model.dao.CategoryDAO;
 import org.iteso.msc.asn2015.productcatalog.model.dao.ImageDAO;
+import org.iteso.msc.asn2015.productcatalog.model.dao.ImageMetadataDAO;
 import org.iteso.msc.asn2015.productcatalog.model.dao.ProductDAO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.CategoryDTO;
-import org.iteso.msc.asn2015.productcatalog.model.dto.ImageDTO;
+import org.iteso.msc.asn2015.productcatalog.model.dto.ImageMetadataDTO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -37,7 +38,7 @@ public class ProductLogic {
 	private CategoryDAO categoryDAO;
 	
 	@Autowired
-	private ImageDAO imageDAO;
+	private ImageMetadataDAO imageMetadataDAO;
 	
 	@Autowired
 	private ProductDAO productDAO;
@@ -63,7 +64,7 @@ public class ProductLogic {
 			return Response.status(Response.Status.NOT_FOUND)
 					.entity("Category with id " + categoryId + " wasn't found").build();
 		}
-		ImageDTO img = imageDAO.findOne(imageId);
+		ImageMetadataDTO img = imageMetadataDAO.findOne(imageId);
 		ProductDTO prod = new ProductDTO(name,currency,price,cat);
 		prod.setDescription(description);
 		prod.setImage(img);
@@ -103,7 +104,7 @@ public class ProductLogic {
 			return Response.status(Response.Status.NOT_FOUND)
 					.entity("Category with id " + categoryId + " wasn't found").build();
 		}
-		ImageDTO img = imageDAO.findOne(imageId);
+		ImageMetadataDTO img = imageMetadataDAO.findOne(imageId);
 		prod.setName(name);
 		prod.setCategory(cat);
 		prod.setImage(img);

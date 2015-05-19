@@ -12,7 +12,7 @@ $(document).ready(function(){
 					.append($("<td>")
 						.append((cat.image == null)?"null":$("<img>")
 							.attr("id","img_"+cat.image.id)
-							.attr("src","data:"+cat.image.type+";base64,"+cat.image.imageFile)
+							.attr("src",cat.image.imageUrl)
 							.attr("style","height:auto; width:auto; max-width:100px; max-height:100px;")
 						)
 					)

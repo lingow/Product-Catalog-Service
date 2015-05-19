@@ -28,9 +28,6 @@ public class ImageDTO implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Integer id;
 	
-	@Column(name="name",nullable=false)
-	private String name;
-	
 	@Column(name="type",nullable=false)
 	private String type;
 	
@@ -42,9 +39,8 @@ public class ImageDTO implements Serializable{
 	public ImageDTO(){
 		super();
 	}
-	public ImageDTO(String name, String type, byte[] imageFile) {
+	public ImageDTO(String type, byte[] imageFile) {
 		this();
-		this.name = name;
 		this.type = type;
 		this.imageFile = imageFile;
 	}
@@ -55,14 +51,6 @@ public class ImageDTO implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getType() {

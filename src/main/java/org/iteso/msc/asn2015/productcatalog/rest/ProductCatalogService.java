@@ -32,7 +32,7 @@ import org.iteso.msc.asn2015.productcatalog.logic.ImageLogic;
 import org.iteso.msc.asn2015.productcatalog.logic.ProductLogic;
 import org.iteso.msc.asn2015.productcatalog.model.dao.ImageDAO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.CategoryDTO;
-import org.iteso.msc.asn2015.productcatalog.model.dto.ImageDTO;
+import org.iteso.msc.asn2015.productcatalog.model.dto.ImageMetadataDTO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -46,7 +46,7 @@ import com.sun.jersey.multipart.FormDataParam;
  * @author Juan Lingow
  * @see ImageLogic
  * @see ImageDAO
- * @see ImageDTO
+ * @see ImageMetadataDTO
  */
 @Component
 @Path("/")
@@ -63,13 +63,13 @@ public class ProductCatalogService {
 	ProductLogic productLogic;
 	
 	/**
-	 * Returns all ImageDTO objects as JSON 
-	 * @return List<ImageDTO>
+	 * Returns all ImageMetadataDTO objects as JSON 
+	 * @return List<ImageMetadataDTO>
 	 */
 	@GET
 	@Path("/images")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ImageDTO> getAll()
+	public List<ImageMetadataDTO> getAll()
 	{
 		return imageLogic.getAll();
 	}
@@ -87,7 +87,7 @@ public class ProductCatalogService {
 	@GET
 	@Path("/imageobject/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ImageDTO getImageObject(@PathParam("id") String id){
+	public ImageMetadataDTO getImageObject(@PathParam("id") String id){
 		return imageLogic.getImageObject(Integer.parseInt(id));
 	}
 	

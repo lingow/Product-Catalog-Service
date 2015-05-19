@@ -9,10 +9,10 @@ $(document).ready(function(){
 					.append($("<td>").text(prod.id))
 					.append($("<td>").text(prod.name))
 					.append($("<td>").text(prod.description))
-					.append($("<td>").text(imageId))
-					.append($("<td>").text(categoryId))
-					.append($("<td>").text(currency))
-					.append($("<td>").text(price))
+					.append($("<td>").text(prod.imageUrl))
+					.append($("<td>").text(prod.category.Id))
+					.append($("<td>").text(prod.currency))
+					.append($("<td>").text(prod.price))
 			)
 		});
 	});

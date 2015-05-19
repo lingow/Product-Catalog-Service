@@ -14,8 +14,9 @@ import javax.ws.rs.core.UriBuilder;
 import org.apache.commons.io.IOUtils;
 import org.iteso.msc.asn2015.productcatalog.model.dao.CategoryDAO;
 import org.iteso.msc.asn2015.productcatalog.model.dao.ImageDAO;
+import org.iteso.msc.asn2015.productcatalog.model.dao.ImageMetadataDAO;
 import org.iteso.msc.asn2015.productcatalog.model.dto.CategoryDTO;
-import org.iteso.msc.asn2015.productcatalog.model.dto.ImageDTO;
+import org.iteso.msc.asn2015.productcatalog.model.dto.ImageMetadataDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +33,7 @@ public class CategoryLogic {
 	private CategoryDAO categoryDAO;
 	
 	@Autowired
-	private ImageDAO imageDAO;
+	private ImageMetadataDAO imageMetadataDAO;
 
 	public Response addCategory(String name, String description, int imageId) {
 		if (name == null){
@@ -40,7 +41,7 @@ public class CategoryLogic {
 					.entity("Name for category should be provided").build();
 		}
 		CategoryDTO cat = new CategoryDTO(name);
-		ImageDTO img = imageDAO.findOne(imageId);
+		ImageMetadataDTO img = imageMetadataDAO.findOne(imageId);
 		cat.setDescription(description);
 		cat.setImage(img);
 		categoryDAO.save(cat);
@@ -58,7 +59,7 @@ public class CategoryLogic {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Name for category should be provided").build();
 		}
-		ImageDTO img = imageDAO.findOne(imageId);
+		ImageMetadataDTO img = imageMetadataDAO.findOne(imageId);
 		CategoryDTO tmpCat = categoryDAO.findOne(id);
 		if (tmpCat == null){
 			return Response.status(Response.Status.NOT_FOUND)

@@ -45,7 +45,7 @@ public class ProductDTO implements Serializable{
 	
 	@OneToOne
 	@JoinColumn(name="image_id")
-	private ImageDTO image;
+	private ImageMetadataDTO image;
 	
 	@ManyToOne
 	@JoinColumn(name="category_id",nullable=false)
@@ -87,10 +87,10 @@ public class ProductDTO implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public ImageDTO getImage() {
+	public ImageMetadataDTO getImage() {
 		return image;
 	}
-	public void setImage(ImageDTO image) {
+	public void setImage(ImageMetadataDTO image) {
 		this.image = image;
 	}
 	public String getCurrency() {

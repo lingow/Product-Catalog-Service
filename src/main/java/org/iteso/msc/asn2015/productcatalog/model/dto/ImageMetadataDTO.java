@@ -9,17 +9,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Entity
-@Table(name="categories")
-public class CategoryDTO implements Serializable{
+@Table(name="image_metadata")
+public class ImageMetadataDTO implements Serializable{
 
 	/**
 	 * 
@@ -34,19 +31,16 @@ public class CategoryDTO implements Serializable{
 	@Column(name="name",nullable=false)
 	private String name;
 	
-	@Column(name="description")
-	private String description;
+	@Column(name="image_url",nullable=false)
+	private String imageUrl;
 	
-	@OneToOne
-	@JoinColumn(name="image_id")
-	private ImageMetadataDTO image;
-	
-	public CategoryDTO(){
+	public ImageMetadataDTO(){
 		super();
 	}
-	public CategoryDTO(String name) {
+	public ImageMetadataDTO(String name, String imageUrl) {
 		this();
 		this.name = name;
+		this.imageUrl = imageUrl;
 	}
 
 	public Integer getId() {
@@ -64,17 +58,10 @@ public class CategoryDTO implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
+	public String getImageUrl() {
+		return imageUrl;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
-	public ImageMetadataDTO getImage() {
-		return image;
-	}
-	public void setImage(ImageMetadataDTO image) {
-		this.image = image;
-	}
-
 }
