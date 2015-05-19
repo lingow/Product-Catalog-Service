@@ -91,6 +91,26 @@ $(document).ready(function(){
 		refreshTable();
 		$('#category').change(refreshTable);
 		$('#currency').change(refreshTable);
+		$("#newProductForm").submit(function(){
+			name = $("#newProductName").val();
+			description = $("#newProductDescription").val();
+			imageID = $("#newProductImage").val();
+			categoryId = $("#newProductCategory").val();
+			price = $("#newProductPrice").val();
+			currency = $("#newProductCurrency").val();
+			$.post("/rest/product",
+					{
+					"name":name,
+					"description":description,
+					"imageId":imageID,
+					"currency":currency,
+					"price":price,
+					"categoryId":categoryId,
+					},function(a,b,c){
+						refreshTable();
+					});
+			return false;
+		});
 	});
 });
 

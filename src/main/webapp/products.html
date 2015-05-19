@@ -29,14 +29,20 @@
    </tbody>
  </table>
 
-<form action="/rest/product" method="post" class="form-horizontal well">
+<form id="newProductForm" class="form-horizontal well">
 	<legend>Add a Product</legend>
-	<label class="label-control">Name</label><input name="name" type="text" class="form-control"/>
-	<label class="label-control">Description</label><input name="description" type="text" class="form-control"/>
-	<label class="label-control">Image Id</label><input name="imageId" type="text" class="form-control"/>
-	<label class="label-control">Category Id</label><input name="categoryId" type="text" class="form-control"/>
-	<label class="label-control">Currency</label><input name="currency" type="text" class="form-control"/>
-	<label class="label-control">Price</label><input name="price" type="text" class="form-control"/>
+	<label class="label-control">Name</label>
+	<input id="newProductName" name="name" type="text" class="form-control"/>
+	<label class="label-control">Description</label>
+	<input id="newProductDescription" name="description" type="text" class="form-control"/>
+	<label class="label-control">Image Id</label>
+	<select id="newProductImage" name="imageId" class="form-control edit_image"></select>
+	<label class="label-control">Category Id</label>
+	<select id="newProductCategory" name="categoryId" class="form-control edit_category"></select>
+	<label class="label-control">Currency</label>
+	<input id="newProductCurrency" name="currency" type="text" class="form-control edit_currency"/>
+	<label class="label-control">Price</label>
+	<input id="newProductPrice" name="price" type="text" class="form-control"/>
 	<hr/>
 	<div class="form-actions">
 		<input type="submit" value="Submit" class="btn btn-primary"/>

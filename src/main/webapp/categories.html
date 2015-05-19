@@ -15,11 +15,14 @@
   </tbody>
 </table>
 
-<form action="/rest/category" method="post" class="form-horizontal well">
+<form id="newCategoryForm" class="form-horizontal well">
 	<legend>Add a Category</legend>
-	<label class="label-control">Name</label><input name="name" type="text" class="form-control"/>
-	<label class="label-control">Description</label><input name="description" type="text" class="form-control"/>
-	<label class="label-control">Image Id</label><input name="imageId" type="text" class="form-control"/>
+	<label class="label-control">Name</label>
+	<input id="newCategoryName" name="name" type="text" class="form-control"/>
+	<label class="label-control">Description</label>
+	<input id="newCategoryDescription" name="description" type="text" class="form-control"/>
+	<label class="label-control">Image Id</label>
+	<select id="newCategoryImage" name="imageId" class="form-control edit_image"></select>
 	<hr/>
 	<div class="form-actions">
 		<input type="submit" value="Submit" class="btn btn-primary"/>

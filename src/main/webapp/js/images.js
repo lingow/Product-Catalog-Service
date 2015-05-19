@@ -33,7 +33,27 @@ $(document).ready(function(){
 			});
 		};
 		refreshTable();
+		$("#newImageForm").submit(function(){
+			var data = new FormData();
+			$.each($("#newImage")[0].files, function(i, file) {
+			    data.append("file", file);
+			});
+			jQuery.ajax({
+			    url: "/rest/image",
+			    data: data,
+			    cache: false,
+			    contentType: false,
+			    processData: false,
+			    type: "POST",
+			    success: function(data){
+			    	refreshTable();
+			    }
+			});
+			return false;
+		});
 	});
+	
+	
 });
 
 

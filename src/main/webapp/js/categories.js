@@ -39,5 +39,19 @@ $(document).ready(function(){
 				});
 		}
 		refreshTable();
+		$("#newCategoryForm").submit(function(){
+			name = $("#newCategoryName").val();
+			description = $("#newCategoryDescription").val();
+			imageID = $("#newCategoryImage").val();
+			$.post("/rest/category",
+					{
+					"name":name,
+					"description":description,
+					"imageId":imageID,
+					},function(a,b,c){
+						refreshTable();
+					});
+			return false;
+		});
 	});
 });
