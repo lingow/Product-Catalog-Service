@@ -15,13 +15,15 @@
   </tbody>
 </table>
 
-<h2>Create</h2>
-
-<form action="/rest/category" method="post">
-	<label>name:</label><input name="name" type="text"/>
-	<label>description:</label><input name="description" type="text"/>
-	<label>imageid:</label><input name="imageId" type="text"/>
-	<input type="submit" value="Submit" />
+<form action="/rest/category" method="post" class="form-horizontal well">
+	<legend>Add a Category</legend>
+	<label class="label-control">Name</label><input name="name" type="text" class="form-control"/>
+	<label class="label-control">Description</label><input name="description" type="text" class="form-control"/>
+	<label class="label-control">Image Id</label><input name="imageId" type="text" class="form-control"/>
+	<hr/>
+	<div class="form-actions">
+		<input type="submit" value="Submit" class="btn btn-primary"/>
+	</div>
 </form>
 
 <script src="js/categories.js"></script>
