@@ -13,6 +13,7 @@ function textCell(val,name,id){
 					.attr("type","text")
 					.attr("id",name + "_" + id)
 					.attr("value",val)
+					.attr("class","edit_" + name)
 				).hide()
 			)
 		return x;
@@ -30,6 +31,7 @@ function textCell(val,name,id){
 					.attr("type","text")
 					.attr("id",name + "_" + id)
 					.attr("value",cat.id)
+					.attr("class","edit_" + name)
 				).hide()
 			)
 		return x;
@@ -50,6 +52,7 @@ function textCell(val,name,id){
 					.attr("type","text")
 					.attr("id",name + "_" + id)
 					.attr("value",image.id)
+					.attr("class","edit_" + name)
 				).hide()
 			)
 		return x;
@@ -134,6 +137,23 @@ function textCell(val,name,id){
 					},function(a,b,c){
 						callback();
 					});
+			break;
+		case "image":
+			var data = new FormData();
+			$.each($("#imgUpload_"+id)[0].files, function(i, file) {
+			    data.append("file", file);
+			});
+			jQuery.ajax({
+			    url: "/rest/image/"+id,
+			    data: data,
+			    cache: false,
+			    contentType: false,
+			    processData: false,
+			    type: "POST",
+			    success: function(data){
+			        callback();
+			    }
+			});
 		default:
 		}
 		stopEditing();

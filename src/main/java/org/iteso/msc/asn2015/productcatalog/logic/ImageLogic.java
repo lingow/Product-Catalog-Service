@@ -103,7 +103,7 @@ public class ImageLogic {
 		}
 		img.setImageFile(modimg.getImageFile());
 		img.setType(modimg.getType());
-		imgMetadata.setName(fileDetail.getName());
+		imgMetadata.setName(fileDetail.getFileName());
 		imageDAO.save(img);
 		imageMetadataDAO.save(imgMetadata);
 		return Response.ok("Image modified").build();
