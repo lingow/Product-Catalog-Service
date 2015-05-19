@@ -93,25 +93,7 @@ You can push the project into heroku by using
 
 And now you can load the website:
 
-To upload Images:
-
 	http://[new_name].herokuapp.com
-	
-View all Image objects
-
-	http://[new_name].heroku/rest/images
-	
-View a single Image object:
-
-	http://[new_name].herokuapp.com/rest/imageobject/${id}
-
-View a single Image
-
-	http://[new_name].herokuapp.com/rest/image/${id}
-
-Delete a single Image [should be made as a DELETE request]
-
-	http://[new_name].herokuapp.com/rest/image/${id}
 
 To test locally, replace [new_name] with localhost:<port> depending on which port was
 jetty started.
@@ -122,13 +104,11 @@ And that's all, now you can play with JPA database connections and JAX-RS rest s
 
 ## Test the real thing
 
-You can test this project for real with the following data:
+You can test this project for real In the following link:
 
-[Upload Images](http://mscproductcatalog.herokuapp.com)
-[Get all image objects](http://mscproductcatalog.herokuapp.com/rest/images)
-[Get single image object](http://mscproductcatalog.herokuapp.com/rest/imageobject/2)
-[Get single image](http://mscproductcatalog.herokuapp.com/rest/image/2)
+[http://mscproductcatalog.herokuapp.com](http://mscproductcatalog.herokuapp.com)
 
 Thanks all!
 Lingow.
 Ivan.
+Mike
